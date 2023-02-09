@@ -38,6 +38,7 @@ var upperCase = [
   "Y",
   "Z",
 ];
+
 var lowerCase = [
   "a",
   "b",
@@ -102,34 +103,68 @@ var specChar = [
   "~",
 ];
 // store value for if criteria is meet
-var criteria = true;
+
 // store amounts of character types a min and a max
 var max = 128;
 var min = 8;
 
 function generatePassword() {
-  let charAmt = "";
-  let passUpper = "";
-  let passLower = "";
+  var totalSelections = [];
   let passNumb = "";
-  let passChar = "";
-
-  if (Number(prompt("How many characters do you want in your password?"))) {
-    console.log(charAmt >= min && charAmt <= max);
+  var password = "";
+  var criteria = false;
+  console.log(totalSelections.length);
+  var charAmt = Number(
+    prompt("How many characters do you want in your password?")
+  );
+  var lenghthCheck = charAmt >= min && charAmt <= max;
+  // console.log(lenghthCheck);
+  if (!lenghthCheck) {
+    alert("Sorry you have to choose a number between 8 and 128!");
+    generatePassword();
   }
 
   if (window.confirm("Do you want uppercase letters in your password?")) {
-    console.log(passUpper === upperCase);
-  }
-  if (window.confirm("Do you want lowercase letters in your password?")) {
-    console.log(passLower === lowerCase);
+    totalSelections = totalSelections.concat(upperCase);
+    criteria = true;
+    console.log(totalSelections.length);
+    // console.log(totalSelections);
   }
 
-  if (window.confirm("Do you want numbers in your password?")) {
-    console.log(passNumb === numbers);
+  if (window.confirm("Do you want lowercase letters in your password?")) {
+    totalSelections = totalSelections.concat(lowerCase);
+    criteria = true;
+    console.log(totalSelections.length);
+    // console.log(totalSelections);
   }
-  if (window.confirm("Do you want special characters in you password?"));
-  console.log(passChar === specChar);
+  if (window.confirm("Do you want numbers in your password?")) {
+    totalSelections = totalSelections.concat(numbers);
+    criteria = true;
+    console.log(totalSelections.length);
+    // console.log(totalSelections);
+  }
+  if (window.confirm("Do you want special characters in your password?")) {
+    totalSelections = totalSelections.concat(specChar);
+    criteria = true;
+    console.log(totalSelections.length);
+    // console.log(totalSelections);
+  }
+  console.log(criteria);
+  if (criteria === false) {
+    alert("You need to select one of the character options, let's try again!");
+    generatePassword();
+  }
+  console.log(totalSelections);
+  console.log(totalSelections.size);
+  for (var i = 0; i < charAmt; i++) {
+    var randomIndex = Math.floor(
+      Math.random() * (totalSelections.length - 0) + 0
+    );
+    console.log(randomIndex);
+    password[i] = totalSelections[randomIndex];
+  }
+
+  return password;
 }
 
 // Add event listener to generate button
