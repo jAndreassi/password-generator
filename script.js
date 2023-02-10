@@ -111,9 +111,9 @@ var min = 8;
 function generatePassword() {
   var totalSelections = [];
   let passNumb = "";
-  var password = "";
+  var password = [];
   var criteria = false;
-  console.log(totalSelections.length);
+  // console.log(totalSelections.length);
   var charAmt = Number(
     prompt("How many characters do you want in your password?")
   );
@@ -127,26 +127,26 @@ function generatePassword() {
   if (window.confirm("Do you want uppercase letters in your password?")) {
     totalSelections = totalSelections.concat(upperCase);
     criteria = true;
-    console.log(totalSelections.length);
+    // console.log(totalSelections.length);
     // console.log(totalSelections);
   }
 
   if (window.confirm("Do you want lowercase letters in your password?")) {
     totalSelections = totalSelections.concat(lowerCase);
     criteria = true;
-    console.log(totalSelections.length);
+    // console.log(totalSelections.length);
     // console.log(totalSelections);
   }
   if (window.confirm("Do you want numbers in your password?")) {
     totalSelections = totalSelections.concat(numbers);
     criteria = true;
-    console.log(totalSelections.length);
+    // console.log(totalSelections.length);
     // console.log(totalSelections);
   }
   if (window.confirm("Do you want special characters in your password?")) {
     totalSelections = totalSelections.concat(specChar);
     criteria = true;
-    console.log(totalSelections.length);
+    // console.log(totalSelections.length);
     // console.log(totalSelections);
   }
   console.log(criteria);
@@ -154,16 +154,20 @@ function generatePassword() {
     alert("You need to select one of the character options, let's try again!");
     generatePassword();
   }
-  console.log(totalSelections);
-  console.log(totalSelections.size);
+  // console.log(totalSelections);
+  // console.log(totalSelections.size);
   for (var i = 0; i < charAmt; i++) {
     var randomIndex = Math.floor(
       Math.random() * (totalSelections.length - 0) + 0
     );
     console.log(randomIndex);
     password[i] = totalSelections[randomIndex];
+    console.log(password);
   }
+  console.log(password);
 
+  password = password.join("");
+  console.log(password);
   return password;
 }
 
